@@ -18,4 +18,17 @@ test_server.route([{
 }
 }]);
 
+test_server.route([{
+    method: 'GET',
+    path: '/noStart',
+    handler: function(request, reply) {
+      setTimeout(
+          function() {
+              request.timing = undefined;
+              reply('done after 1 seconds')
+          }, 1000
+      );
+  }
+  }]);
+  
 module.exports = test_server;

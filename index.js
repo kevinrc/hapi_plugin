@@ -8,7 +8,7 @@ exports.register = function (server, options, next) {
         return reply.continue();
     });
     server.ext('onPreResponse', function(request, reply) {
-        if (!request.timing && request.timing.start) {
+        if (!request.timing) {
             request.timing = {
                 err: 'arrived in `onPreResponse` without request start time'
             };

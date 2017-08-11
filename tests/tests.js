@@ -39,3 +39,20 @@ test('request should contain request-timing-elapsed header', (t) => {
         })
     });
 });
+
+test('request should trigger error', (t) => {
+    var options = {
+            method: "GET",
+            url: "/noStart"
+        };
+
+    server.start((err) => {
+        if (err) {
+            console.log(err)
+        }
+        server.inject(options, function (response) {
+            t.ok(response.request.timing.err, 'error data should exist - ✅');
+            server.stop(t.end);
+        })
+    });
+});

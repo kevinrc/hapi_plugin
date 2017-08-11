@@ -14,10 +14,9 @@ exports.register = function (server, options, next) {
             };
         } else {
             let start = parseInt(request.timing.start),
-                finish = new Date().getTime(),
-                elapsed = finish - start;
+                finish = new Date().getTime();
 
-            request.response.header('request-timing-elapsed', elapsed);
+            request.response.header('request-timing-elapsed', finish - start);
         }
 
         return reply.continue();
